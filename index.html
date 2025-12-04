@@ -6,66 +6,120 @@
     <title>EconoGlobal - Responsible Globalization</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Inter', sans-serif; } </style>
-</head>
-<body class="bg-gray-50 text-slate-800">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Scrollbar for smoother look */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-    <nav class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Progress Bar */
+        #progress-container {
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+        #progress-bar {
+            height: 4px;
+            background: #2563eb;
+            width: 0%;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800 relative">
+
+    <button id="backToTop" onclick="scrollToTop()" class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 transform translate-y-20 opacity-0 z-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <a href="#home" class="flex items-center gap-2">
                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                     <span class="font-bold text-xl tracking-tight text-slate-900">EconoGlobal</span>
                 </a>
-                <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
-                    <a href="#home" class="hover:text-blue-600 transition">Home</a>
-                    <a href="#who-we-are" class="hover:text-blue-600 transition">Who We Are</a>
-                    <a href="#issues" class="hover:text-blue-600 transition">About the Issue</a>
-                    <a href="#advocacy" class="hover:text-blue-600 transition">Our Advocacy</a>
-                    <a href="#learn-more" class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Learn More</a>
-                    <a href="#contact" class="hover:text-blue-600 transition">Contact Us</a>
+                <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center" id="nav-links">
+                    <a href="#home" class="nav-link hover:text-blue-600 transition">Home</a>
+                    <a href="#who-we-are" class="nav-link hover:text-blue-600 transition">Who We Are</a>
+                    <a href="#issues" class="nav-link hover:text-blue-600 transition">About the Issue</a>
+                    <a href="#advocacy" class="nav-link hover:text-blue-600 transition">Our Advocacy</a>
+                    <a href="#learn-more" class="nav-link px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">Learn More</a>
+                    <a href="#contact" class="nav-link hover:text-blue-600 transition">Contact Us</a>
                 </div>
             </div>
         </div>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
     </nav>
 
-    <section id="home" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-32 text-center px-4">
-        <div class="max-w-4xl mx-auto">
+    <section id="home" class="relative bg-gradient-to-r from-blue-600 to-blue-500 text-white py-32 text-center px-4 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto reveal active">
             <span class="inline-block py-1 px-3 rounded-full bg-white/20 text-xs font-semibold backdrop-blur-sm mb-6 border border-white/30">Economic Dimension of Globalization</span>
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Understanding Economic Globalization</h1>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 tracking-tight drop-shadow-sm">Understanding Economic Globalization</h1>
             <p class="text-xl md:text-2xl text-blue-50 mb-10 max-w-3xl mx-auto font-light">
                 From national markets to a single global economy—exploring how interconnected financial systems shape our world.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#issues" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg">Learn About the Issues &rarr;</a>
+                <a href="#issues" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">Learn About the Issues →</a>
                 <a href="#who-we-are" class="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition">Who We Are</a>
             </div>
         </div>
     </section>
 
     <section id="definition" class="py-20 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-slate-900">The Economic Dimension of Globalization</h2>
+        <div class="text-center mb-12 reveal">
+            <h2 class="text-3xl font-bold text-slate-900">The Economic Dimension</h2>
         </div>
-        <div class="bg-blue-600 text-white p-8 rounded-xl shadow-lg mb-12">
-            <h3 class="text-2xl font-bold mb-4">Definition</h3>
-            <p class="text-lg leading-relaxed opacity-90">
-                The economic dimension of globalization refers to the <strong class="text-white">integration of national economies into the global market</strong>. It encompasses trade, investments, finance, multinational companies, and international labor.
-            </p>
+        
+        <div class="grid md:grid-cols-2 gap-8 items-center mb-16 reveal">
+            <div class="bg-blue-600 text-white p-10 rounded-xl shadow-xl h-full flex flex-col justify-center transform transition duration-500 hover:scale-[1.01]">
+                <h3 class="text-2xl font-bold mb-4">Definition</h3>
+                <p class="text-lg leading-relaxed opacity-90">
+                    The economic dimension of globalization refers to the <strong class="text-white border-b-2 border-white/30">integration of national economies into the global market</strong>. It encompasses trade, investments, finance, multinational companies, and international labor.
+                </p>
+            </div>
+            <div class="h-full min-h-[300px]">
+                <img src="https://credendo.com/sites/default/files/media/images/2023-06/itp-philippines-june2023.jpg" alt="Global Economy Connection" class="w-full h-full object-cover rounded-xl shadow-lg hover:scale-[1.02] transition duration-500">
+            </div>
         </div>
+
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 text-blue-600 mb-4"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div>
+            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition duration-300 group reveal">
+                <div class="w-12 h-12 text-blue-600 mb-4 group-hover:scale-110 transition"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div>
                 <h4 class="text-xl font-bold mb-3">Global Value Chains</h4>
                 <p class="text-slate-600">Production is fragmented across different countries to maximize efficiency.</p>
             </div>
-            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 text-blue-600 mb-4"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg></div>
+            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition duration-300 group reveal">
+                <div class="w-12 h-12 text-blue-600 mb-4 group-hover:scale-110 transition"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg></div>
                 <h4 class="text-xl font-bold mb-3">International Governance</h4>
                 <p class="text-slate-600">Governed by institutions like the WTO, IMF, and World Bank.</p>
             </div>
-            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 text-blue-600 mb-4"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
+            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition duration-300 group reveal">
+                <div class="w-12 h-12 text-blue-600 mb-4 group-hover:scale-110 transition"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
                 <h4 class="text-xl font-bold mb-3">Market Integration</h4>
                 <p class="text-slate-600">Connects labor markets and investment flows across borders.</p>
             </div>
@@ -74,38 +128,31 @@
 
     <hr class="max-w-6xl mx-auto border-gray-200">
 
-    <section id="who-we-are">
-        <div class="bg-blue-600 py-16 text-center text-white">
+    <section id="who-we-are" class="scroll-mt-20">
+        <div class="bg-blue-600 py-16 text-center text-white reveal">
             <span class="inline-block px-3 py-1 bg-white text-blue-600 rounded-full text-xs font-bold mb-4">About Our Team</span>
             <h2 class="text-4xl font-bold">Who We Are</h2>
-            <p class="text-blue-100 mt-2">A dedicated group advocating for responsible economic globalization.</p>
+            <p class="text-blue-100 mt-2">Group 2: Economic Globalization Advocates</p>
         </div>
-        <div class="max-w-7xl mx-auto px-4 -mt-10 mb-20">
+        <div class="max-w-7xl mx-auto px-4 -mt-10 mb-20 reveal">
             <div class="bg-white p-8 rounded-xl shadow-xl border-t-4 border-blue-600 mb-8">
-                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">Group 2: Economic Globalization Advocates</h3>
-                <p class="text-slate-600 leading-relaxed">We are Group 2, a team of passionate advocates dedicated to promoting responsible economic globalization.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                    <h3 class="font-bold text-lg mb-4">Our Mission</h3>
-                    <p class="text-slate-600 text-sm mb-4">To educate and empower individuals and communities about the economic dimension of globalization.</p>
-                    <ul class="space-y-2 text-sm text-slate-700">
-                        <li class="flex gap-2 items-center"><span class="text-blue-500">✓</span> Raise awareness about issues</li>
-                        <li class="flex gap-2 items-center"><span class="text-blue-500">✓</span> Advocate for fair policies</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                    <h3 class="font-bold text-lg mb-4">Our Values</h3>
-                    <p class="text-slate-600 text-sm mb-4">We believe in an economic system that works for everyone.</p>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3"><span class="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded">Equity</span><span class="text-sm text-slate-600">Fair distribution of wealth.</span></div>
-                        <div class="flex items-center gap-3"><span class="px-2 py-1 bg-green-600 text-white text-xs font-bold rounded">Sustainability</span><span class="text-sm text-slate-600">Environmental responsibility.</span></div>
-                    </div>
+                <h3 class="text-xl font-bold mb-6 text-slate-800 text-center">Meet the Team</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Adrian Andres</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Christina Ivan Devera</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Allen Clintz Dayao</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Harvey Dann Saroy</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Kenjun Dallapas</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Kris Del Ticag</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Kyrene Camilla Estocapio</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Monica Hiblawan</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-blue-50 transition"><p class="font-semibold text-slate-700">Tyrone Callejo</p></div>
                 </div>
             </div>
-             <div class="bg-blue-50 p-8 rounded-xl border border-blue-200">
+            
+             <div class="bg-blue-50 p-8 rounded-xl border border-blue-200 reveal">
                 <h3 class="font-bold text-lg mb-2">Why This Matters</h3>
-                <div class="border-l-4 border-blue-600 pl-4 italic text-slate-700 bg-white p-4 rounded-r-lg">
+                <div class="border-l-4 border-blue-600 pl-4 italic text-slate-700 bg-white p-4 rounded-r-lg shadow-sm">
                     "Every purchase we make, every job we take, and every policy we support contributes to the global economic system. By understanding how this system works, we can push for one that serves humanity, not just profits."
                     <br><span class="text-xs font-bold not-italic text-slate-400 mt-2 block">— Group 2 Mission Statement</span>
                 </div>
@@ -115,30 +162,46 @@
 
     <hr class="max-w-6xl mx-auto border-gray-200">
 
-    <section id="issues">
-        <div class="bg-gradient-to-r from-red-600 to-orange-500 py-16 text-center text-white">
+    <section id="issues" class="scroll-mt-20">
+        <div class="bg-gradient-to-r from-red-600 to-orange-500 py-16 text-center text-white reveal">
             <div class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">!</div>
             <h2 class="text-4xl font-bold">About the Issue</h2>
             <p class="text-red-100 mt-2">Understanding the challenges of economic globalization</p>
         </div>
         <div class="max-w-7xl mx-auto px-4 py-20">
-            <h3 class="text-center text-2xl font-bold text-slate-900 mb-10">Critical Issues We Face</h3>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-red-500 hover:shadow-lg transition">
-                    <h4 class="font-bold text-lg mb-2">Economic Inequality</h4>
-                    <p class="text-slate-500 text-sm">Unequal wealth distribution between countries and communities.</p>
+            <h3 class="text-center text-2xl font-bold text-slate-900 mb-10 reveal">Critical Issues We Face</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-red-500 hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden reveal">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=400&q=80" class="w-full h-40 object-cover" alt="Inequality">
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2 text-slate-900">Economic Inequality</h4>
+                        <p class="text-slate-500 text-sm">Unequal wealth distribution between countries and communities.</p>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-orange-500 hover:shadow-lg transition">
-                    <h4 class="font-bold text-lg mb-2">Employment Stability</h4>
-                    <p class="text-slate-500 text-sm">Outsourcing to low-wage countries threatens job security.</p>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-orange-500 hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden reveal">
+                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=400&q=80" class="w-full h-40 object-cover" alt="Factory Workers">
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2 text-slate-900">Employment Stability</h4>
+                        <p class="text-slate-500 text-sm">Outsourcing to low-wage countries threatens job security.</p>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-yellow-500 hover:shadow-lg transition">
-                    <h4 class="font-bold text-lg mb-2">Tax Avoidance</h4>
-                    <p class="text-slate-500 text-sm">Multinational corporations moving money to avoid taxes.</p>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-yellow-500 hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden reveal">
+                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=400&q=80" class="w-full h-40 object-cover" alt="Finance">
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2 text-slate-900">Tax Avoidance</h4>
+                        <p class="text-slate-500 text-sm">Multinational corporations moving money to avoid taxes.</p>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-green-500 hover:shadow-lg transition">
-                    <h4 class="font-bold text-lg mb-2">Economic Dependency</h4>
-                    <p class="text-slate-500 text-sm">Vulnerability to global economic shocks.</p>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-green-500 hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden reveal">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=400&q=80" class="w-full h-40 object-cover" alt="Logistics">
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2 text-slate-900">Economic Dependency</h4>
+                        <p class="text-slate-500 text-sm">Vulnerability to global economic shocks.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,27 +209,34 @@
 
     <hr class="max-w-6xl mx-auto border-gray-200">
 
-    <section id="advocacy">
-        <div class="bg-gradient-to-r from-emerald-500 to-blue-500 py-16 text-center text-white">
+    <section id="advocacy" class="scroll-mt-20">
+        <div class="bg-gradient-to-r from-emerald-500 to-blue-500 py-16 text-center text-white reveal">
             <div class="mx-auto w-12 h-12 mb-4 border-2 border-white rounded-full flex items-center justify-center"><div class="w-6 h-6 bg-white rounded-full"></div></div>
             <h2 class="text-4xl font-bold">Our Advocacy</h2>
             <p class="text-emerald-50 mt-2">A call for sustainable and equitable globalization</p>
         </div>
+        
         <div class="max-w-7xl mx-auto px-4 py-20 text-center">
-            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase tracking-wider">Our Position</span>
-            <h3 class="text-3xl font-bold text-slate-900 mt-4">What We Stand For</h3>
-            <p class="text-slate-600 mt-2 mb-10">Group 2 calls for a shift toward <strong class="text-slate-900">Sustainable Economic Policies</strong>.</p>
-            <div class="border border-red-500 bg-red-50 p-8 rounded-xl max-w-4xl mx-auto text-left">
-                <h4 class="flex items-center gap-2 font-bold text-lg text-slate-900 mb-2">The Central Challenge</h4>
-                <p class="text-slate-700">How to balance economic growth with equitable wealth distribution and environmental sustainability?</p>
+            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase tracking-wider reveal">Our Position</span>
+            <h3 class="text-3xl font-bold text-slate-900 mt-4 reveal">What We Stand For</h3>
+            <p class="text-slate-600 mt-2 mb-10 reveal">Group 2 calls for a shift toward <strong class="text-slate-900">Sustainable Economic Policies</strong>.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto reveal">
+                <div class="border border-red-500 bg-red-50 p-8 rounded-xl text-left h-full flex flex-col justify-center">
+                    <h4 class="flex items-center gap-2 font-bold text-lg text-slate-900 mb-4">The Central Challenge</h4>
+                    <p class="text-slate-700 leading-relaxed text-lg">"How to balance economic growth with equitable wealth distribution and environmental sustainability?"</p>
+                </div>
+                <div class="h-full min-h-[250px]">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Sustainable Growth" class="w-full h-full object-cover rounded-xl shadow-lg hover:scale-105 transition duration-500">
+                </div>
             </div>
         </div>
     </section>
     
     <hr class="max-w-6xl mx-auto border-gray-200">
 
-    <section id="learn-more">
-        <div class="bg-gradient-to-r from-purple-600 to-blue-600 py-16 text-center text-white">
+    <section id="learn-more" class="scroll-mt-20">
+        <div class="bg-gradient-to-r from-purple-600 to-blue-600 py-16 text-center text-white reveal">
             <div class="mx-auto w-12 h-12 mb-4 flex items-center justify-center">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             </div>
@@ -175,15 +245,15 @@
         </div>
 
         <div class="max-w-5xl mx-auto px-4 py-20">
-            <div class="bg-white border-l-4 border-purple-600 shadow-md rounded-r-xl p-8 mb-12">
+            <div class="bg-white border-l-4 border-purple-600 shadow-md rounded-r-xl p-8 mb-12 reveal">
                 <h3 class="text-2xl font-bold text-slate-900 mb-4">Deepen Your Understanding</h3>
                 <p class="text-slate-600 leading-relaxed">
-                    We've compiled trusted sources from academic institutions, international organizations, news outlets, and educational platforms to help you explore the economic dimension of globalization in greater depth.
+                    We've compiled trusted sources from academic institutions, international organizations, news outlets, and educational platforms.
                 </p>
             </div>
 
-            <h3 class="font-bold text-xl text-slate-900 mb-6">References & Recommended Reading</h3>
-            <div class="grid gap-4">
+            <h3 class="font-bold text-xl text-slate-900 mb-6 reveal">References & Recommended Reading</h3>
+            <div class="grid gap-4 reveal">
                 <a href="https://www.ebsco.com/research-starters/business-and-management/global-value-chains-gvcs" target="_blank" class="block bg-white p-6 rounded-xl border border-gray-200 hover:border-purple-400 hover:shadow-md transition group">
                     <div class="flex items-start justify-between">
                         <div>
@@ -213,20 +283,13 @@
                         <span class="text-gray-400 group-hover:text-purple-600">↗</span>
                     </div>
                 </a>
-
-                <div class="block bg-white p-6 rounded-xl border border-gray-200">
-                    <div>
-                        <h4 class="font-bold text-slate-900">Globalization: What Is It and How Does It Affect Us?</h4>
-                        <p class="text-slate-500 text-sm mt-1">BBC News (2021)</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <hr class="max-w-6xl mx-auto border-gray-200">
 
-    <section id="contact" class="bg-blue-700 text-white py-20 px-4">
+    <section id="contact" class="bg-blue-700 text-white py-20 px-4 reveal">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl font-bold mb-4">Join Us in Making a Difference</h2>
             <p class="text-blue-100 mb-8 max-w-2xl mx-auto">Responsible globalization starts with informed choices.</p>
@@ -238,8 +301,67 @@
     </section>
 
     <footer class="bg-white pt-10 pb-8 border-t border-gray-100 text-center text-sm text-slate-500">
-        &copy; 2024 EconoGlobal Advocacy Project. All rights reserved.
+        © 2024 EconoGlobal Advocacy Project. All rights reserved.
     </footer>
 
+    <script>
+        // 1. Scroll Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            
+            // Back to Top Button Logic
+            const backToTopBtn = document.getElementById("backToTop");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'translate-y-20');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'translate-y-20');
+            }
+        };
+
+        // 2. Smooth Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 3. Reveal Animations on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // 4. Highlight Active Navigation Link
+        const sections = document.querySelectorAll("section");
+        const navLi = document.querySelectorAll("#nav-links a");
+        
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute("id");
+                }
+            });
+            navLi.forEach((li) => {
+                li.classList.remove("text-blue-600");
+                // Reset Learn More button style manually to avoid conflict
+                if(li.href.includes(current) && !li.classList.contains('bg-blue-600')) {
+                    li.classList.add("text-blue-600");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
